@@ -1,0 +1,229 @@
+/* ==========================================================================
+   Emotion Detection from Text  --  hand-drawn / notebook theme
+   Loaded by app.py and injected into the page with st.markdown().
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Nunito:wght@400;600;700&display=swap');
+
+:root {
+    --ink: #2E2A27;          /* pencil dark   */
+    --ink-soft: #6E6259;     /* faded pencil  */
+    --paper: #FDFBF5;        /* warm paper    */
+    --accent: #EF7A5A;       /* crayon coral  */
+    --accent-soft: #FDE8E1;
+    --mint: #7FB8AE;         /* second accent */
+    --line: rgba(120, 160, 200, 0.13);
+}
+
+/* ------------------------------------------------ page: ruled notebook paper */
+[data-testid="stAppViewContainer"] {
+    background-color: var(--paper);
+    background-image: linear-gradient(var(--line) 1px, transparent 1px);
+    background-size: 100% 30px;
+}
+[data-testid="stHeader"] { background: transparent; }
+[data-testid="stDecoration"] { display: none; }
+#MainMenu, footer { visibility: hidden; }
+/* hide the "Deploy" toolbar so the demo page stays clean */
+[data-testid="stToolbar"] { display: none; }
+
+.block-container { padding-top: 2.2rem; padding-bottom: 3rem; max-width: 780px; }
+
+html, body, [class*="css"], .stMarkdown, p, li, label {
+    font-family: 'Nunito', system-ui, sans-serif;
+    color: var(--ink);
+}
+
+/* ------------------------------------------------------- the hand-drawn box */
+/* The lopsided border-radius is the classic CSS trick for a "sketched" box:
+   each corner gets a different curve, so no edge looks machine-perfect.      */
+.doodle-box {
+    background: #FFFFFF;
+    border: 2.5px solid var(--ink);
+    border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+    box-shadow: 4px 5px 0 rgba(46, 42, 39, 0.09);
+    padding: 1.4rem 1.6rem;
+    margin-bottom: 1.1rem;
+}
+
+/* ------------------------------------------------------------------- hero */
+.hero {
+    text-align: center;
+    padding: 1.6rem 1.4rem 1.3rem;
+    background: #FFFFFF;
+    border: 2.5px solid var(--ink);
+    border-radius: 225px 15px 255px 15px / 15px 255px 15px 225px;
+    box-shadow: 5px 6px 0 rgba(46, 42, 39, 0.09);
+    margin-bottom: 1.4rem;
+}
+.hero h1 {
+    font-family: 'Patrick Hand', cursive;
+    font-size: 2.65rem;
+    line-height: 1.15;
+    margin: 0.35rem 0 0.15rem;
+    color: var(--ink);
+}
+.hero p {
+    font-family: 'Patrick Hand', cursive;
+    font-size: 1.18rem;
+    color: var(--ink-soft);
+    margin: 0;
+}
+.hero .doodle { animation: float 4.5s ease-in-out infinite; }
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-7px); }
+}
+
+/* --------------------------------------------------------- section titles */
+.section-title {
+    font-family: 'Patrick Hand', cursive;
+    font-size: 1.5rem;
+    color: var(--ink);
+    margin: 1.5rem 0 0.5rem;
+}
+/* wobbly hand-drawn underline made of two soft strokes */
+.section-title::after {
+    content: "";
+    display: block;
+    width: 62px; height: 5px;
+    margin-top: 3px;
+    background: var(--accent);
+    border-radius: 60% 40% 55% 45% / 100% 100% 60% 60%;
+    opacity: 0.75;
+}
+
+/* --------------------------------------------------------------- text area */
+.stTextArea textarea {
+    font-family: 'Nunito', sans-serif !important;
+    font-size: 1.02rem !important;
+    background: #FFFFFF !important;
+    color: var(--ink) !important;
+    border: 2.5px solid var(--ink) !important;
+    border-radius: 18px 8px 20px 8px / 8px 20px 8px 18px !important;
+    box-shadow: 3px 4px 0 rgba(46, 42, 39, 0.08);
+    padding: 0.85rem 1rem !important;
+}
+.stTextArea textarea:focus {
+    border-color: var(--accent) !important;
+    box-shadow: 3px 4px 0 rgba(239, 122, 90, 0.22);
+}
+.stTextArea label p { font-family: 'Patrick Hand', cursive !important; font-size: 1.35rem !important; }
+
+/* ----------------------------------------------------------------- buttons */
+.stButton > button {
+    font-family: 'Patrick Hand', cursive !important;
+    font-size: 1.05rem !important;
+    color: var(--ink) !important;
+    background: #FFFFFF !important;
+    border: 2.5px solid var(--ink) !important;
+    border-radius: 22px 9px 20px 9px / 9px 20px 9px 22px !important;
+    box-shadow: 3px 3px 0 rgba(46, 42, 39, 0.16);
+    padding: 0.35rem 1rem !important;
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+.stButton > button:hover {
+    background: var(--accent-soft) !important;
+    border-color: var(--ink) !important;
+    transform: translate(-1px, -1px);
+    box-shadow: 4px 4px 0 rgba(46, 42, 39, 0.22);
+}
+.stButton > button:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 rgba(46, 42, 39, 0.2); }
+.stButton > button:focus { color: var(--ink) !important; }
+
+/* the main "Detect Emotion" button */
+.stButton > button[kind="primary"] {
+    background: var(--accent) !important;
+    color: #FFFFFF !important;
+    font-size: 1.25rem !important;
+    padding: 0.5rem 1.2rem !important;
+}
+.stButton > button[kind="primary"]:hover { background: #E8694A !important; color: #FFFFFF !important; }
+.stButton > button[kind="primary"]:focus { color: #FFFFFF !important; }
+
+/* ------------------------------------------------------------- result card */
+.result-card {
+    text-align: center;
+    border: 3px solid var(--ink);
+    border-radius: 245px 18px 235px 18px / 18px 235px 18px 245px;
+    box-shadow: 5px 6px 0 rgba(46, 42, 39, 0.11);
+    padding: 1.5rem 1.2rem 1.3rem;
+    margin: 0.4rem 0 1rem;
+    animation: pop-in 0.35s ease-out;
+}
+@keyframes pop-in {
+    from { opacity: 0; transform: scale(0.94) translateY(8px); }
+    to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+.result-card .cap {
+    font-family: 'Patrick Hand', cursive;
+    font-size: 1.1rem; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--ink-soft);
+}
+.result-card .emoji { font-size: 4.1rem; line-height: 1.15; margin: 0.25rem 0; }
+.result-card .label {
+    font-family: 'Patrick Hand', cursive;
+    font-size: 2.35rem; text-transform: capitalize; margin-bottom: 0.15rem;
+}
+.result-card .conf { font-size: 1rem; color: var(--ink-soft); font-weight: 600; }
+
+/* hand-drawn confidence bar */
+.conf-bar {
+    width: 78%; height: 15px; margin: 0.7rem auto 0.2rem;
+    background: #FFFFFF;
+    border: 2.5px solid var(--ink);
+    border-radius: 12px 5px 12px 5px / 5px 12px 5px 12px;
+    overflow: hidden;
+}
+.conf-bar > span {
+    display: block; height: 100%;
+    background: repeating-linear-gradient(45deg, var(--accent), var(--accent) 6px, #F2906F 6px, #F2906F 12px);
+}
+
+/* ------------------------------------------------------- runner-up guesses */
+.runner { margin: 0.25rem 0 0.15rem; font-size: 0.93rem; color: var(--ink-soft); }
+.runner .track {
+    display: inline-block; width: 130px; height: 9px; vertical-align: middle;
+    background: #EFE9DF; border-radius: 6px; overflow: hidden; margin: 0 8px;
+}
+.runner .track > span { display: block; height: 100%; background: var(--mint); }
+
+/* --------------------------------------------------------- history entries */
+.history-item {
+    background: #FFFFFF;
+    border: 2px dashed var(--ink-soft);
+    border-radius: 16px 6px 18px 6px / 6px 18px 6px 16px;
+    padding: 0.7rem 0.95rem;
+    margin-bottom: 0.6rem;
+}
+.history-item .quote { font-style: italic; color: var(--ink); margin-bottom: 0.2rem; }
+.history-item .meta { font-size: 0.9rem; color: var(--ink-soft); font-weight: 600; }
+
+/* ------------------------------------------------------- "how it works" row */
+.steps { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.2rem; }
+.step {
+    flex: 1 1 84px; min-width: 82px; text-align: center;
+    background: #FFFFFF;
+    border: 2px solid var(--ink);
+    border-radius: 20px 7px 18px 7px / 7px 18px 7px 20px;
+    padding: 0.6rem 0.25rem;
+}
+.step .ico { font-size: 1.5rem; }
+.step .txt {
+    font-family: 'Patrick Hand', cursive; font-size: 0.98rem;
+    line-height: 1.15; margin-top: 0.15rem;
+}
+.step .num { font-size: 0.72rem; color: var(--ink-soft); }
+.step-arrow { align-self: center; color: var(--ink-soft); font-size: 0.95rem; }
+
+/* ------------------------------------------------------------- small bits */
+.counter { text-align: right; font-size: 0.85rem; color: var(--ink-soft); margin-top: -0.5rem; }
+.hint { font-family: 'Patrick Hand', cursive; font-size: 1.05rem; color: var(--ink-soft); }
+.stExpander summary p { font-family: 'Patrick Hand', cursive !important; font-size: 1.2rem !important; }
+[data-testid="stExpander"] details {
+    border: 2px solid var(--ink) !important;
+    border-radius: 18px 7px 20px 7px / 7px 20px 7px 18px !important;
+    background: #FFFFFF;
+}
+hr { border-color: rgba(46, 42, 39, 0.18); }

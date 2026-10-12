@@ -1,0 +1,11 @@
+# Base Streamlit theme, so the app always opens with the light "paper" look
+# that assets/style.css is designed for (even if your OS is in dark mode).
+[theme]
+base = "light"
+primaryColor = "#EF7A5A"
+backgroundColor = "#FDFBF5"
+secondaryBackgroundColor = "#FFFFFF"
+textColor = "#2E2A27"
+
+[browser]
+gatherUsageStats = false
